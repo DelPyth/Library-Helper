@@ -139,11 +139,13 @@ About:
 	About :=
 	(LTrim
 	"Created by Delta
-	Thank you to"
+	Thank you to the AHK community for teaching me all that I know now.
+	Thank you lexikos for creating AHK_L and allowing me to use it for this program!
+	If you have any suggestions, please visit the forum to do so."
 	)
 	MsgBox,
 	, % SplitPath(A_ScriptName).NameNoExt
-	, %
+	, % About
 	Return
 
 ; ==============================================================================================
