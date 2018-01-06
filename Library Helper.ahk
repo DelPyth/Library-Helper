@@ -65,7 +65,7 @@ Menu, Tray, Icon, Shell32.dll, 55
 Gui, 1:New, +Resize
 Gui, 1:Menu, Main
 Gui, 1:Font,, Consolas
-Gui, 1:Add, Edit, x0 y0 vEdit, % Files
+Gui, 1:Add, Edit, x0 y0 vEdit r2, % Files
 Gui, 1:Show, w560 h333, % "Library Helper, by Delta"
 Return
 
@@ -110,8 +110,7 @@ OpenFolder:
 	Loop, Files, % Folder "*.*", R
 	{
 		If (SplitPath(A_LoopFileFullPath).Ext = "AHK") {
-			TrayTip,, % Info .= SplitPath(A_LoopFileLongPath).Dir "`n"
-			OutStr .= "#Include, " StrReplace(A_LoopFileLongPath, SplitPath(A_LoopFileLongPath).Dir, "`%A_ScriptDir`%\Lib") "`n"
+			OutStr .= "#Include, " StrReplace(A_LoopFileLongPath, SplitPath(Folder).Dir, "`%A_ScriptDir`%\Lib") "`n"
 		}
 	}
 	GuiControl,, Edit, % OutStr
@@ -122,8 +121,7 @@ AddLib:
 	Loop, Files, % A_AHKDir "\*.*", R
 	{
 		If (SplitPath(A_LoopFileFullPath).Ext = "AHK") {
-			TrayTip,, % Info .= SplitPath(A_LoopFileLongPath).Dir "`n"
-			OutStr .= "#Include, " StrReplace(StrReplace(A_LoopFileLongPath, SplitPath(A_LoopFileLongPath).Dir, "<"), "<\", "<") ">`n"
+			OutStr .= "#Include, " StrReplace(A_LoopFileLongPath, SplitPath(A_LoopFileLongPath).Dir "\", "<") ">`n"
 		}
 	}
 	Gui, Submit, NoHide
